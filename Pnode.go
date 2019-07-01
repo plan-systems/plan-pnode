@@ -15,10 +15,10 @@ import (
 	"encoding/json"
 	"strings"
 
-
 	"google.golang.org/grpc"
 
 	"github.com/plan-systems/plan-core/tools"
+	"github.com/plan-systems/plan-core/tools/ctx"
 	"github.com/plan-systems/plan-core/plan"
 	"github.com/plan-systems/plan-core/repo"
 )
@@ -47,9 +47,9 @@ func (config *Config) ApplyDefaults() {
 
 // Pnode wraps one or more communities replicated to a local dir.
 type Pnode struct {
-	tools.Context
+	ctx.Context
 
-	activeSessions tools.SessionGroup
+	activeSessions ctx.SessionGroup
 
 	BasePath  string
 	ReposPath string
@@ -67,7 +67,7 @@ func NewPnode(
 ) (*Pnode, error) {
 
 	pn := &Pnode{
-		activeSessions: tools.NewSessionGroup(),
+		activeSessions: ctx.NewSessionGroup(),
 		servicePort:    inServicePort,
 	}
 	pn.SetLogLabel("pnode")
