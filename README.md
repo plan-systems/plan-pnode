@@ -12,9 +12,10 @@ P  L  A  N etwork
 ## About
 
 - This repo builds a daemon called `pnode`, the reference implementation of the [PLAN Data Model](https://github.com/plan-systems/design-docs/blob/master/PLAN-Proof-of-Correctness.md)
-- `pnode` publishes the gRPC `Repo` service, defined in [repo.proto](https://github.com/plan-systems/plan-protobufs/blob/master/pkg/repo/repo.proto)
-- A pnode _initiates_ connections to PLAN PDI nodes via the gRPC `StorageProvder` service, defined in [pdi.proto](https://github.com/plan-systems/plan-protobufs/blob/master/pkg/pdi/pdi.proto)
-- To better understand `pnode`, see [Persistent Data Interface](https://github.com/plan-systems/design-docs/blob/master/PLAN-API-Documentation.md#Persistent-Data-Interface)
+- `pnode` publishes the gRPC `Repo` service (defined in [repo.proto](https://github.com/plan-systems/plan-protobufs/blob/master/pkg/repo/repo.proto))
+- A pnode initiates connections to PLAN PDI nodes via the gRPC `StorageProvder` service (defined in [pdi.proto](https://github.com/plan-systems/plan-protobufs/blob/master/pkg/pdi/pdi.proto))
+- To better understand `pnode`, see the [Persistent Data Interface](https://github.com/plan-systems/design-docs/blob/master/PLAN-API-Documentation.md#Persistent-Data-Interface) docs and the PLAN Network Configuration Diagram
+
 
 ## Building
 
