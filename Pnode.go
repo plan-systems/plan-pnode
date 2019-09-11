@@ -15,12 +15,12 @@ import (
 	"encoding/json"
 	"strings"
 
-	"google.golang.org/grpc"
-
-	"github.com/plan-systems/plan-core/tools"
-	"github.com/plan-systems/plan-core/tools/ctx"
 	"github.com/plan-systems/plan-core/plan"
 	"github.com/plan-systems/plan-core/repo"
+	"github.com/plan-systems/plan-core/tools"
+	"github.com/plan-systems/plan-core/tools/ctx"
+
+	"google.golang.org/grpc"
 )
 
 const (
@@ -213,6 +213,7 @@ func (pn *Pnode) createAndStartRepo(
 
 	err = CR.Startup()
 	if err != nil {
+		CR.CtxStop("repo startup failed", nil)
 		return nil, err
 	}
 
@@ -257,15 +258,13 @@ func (pn *Pnode) seedRepo(
 	})
 
 	// When we pass the seed, it means create from scratch
-	CR, err := pn.createAndStartRepo(inSeed.SuggestedDirName, inSeed)
+	_, err := pn.createAndStartRepo(inSeed.SuggestedDirName, inSeed)
 
 	if err == nil {
 		err = pn.writeConfig()
 	}
 
 	if err != nil {
-		CR.CtxStop("seed failed", nil)
-
 		// TODO: clean up
 	}
 
