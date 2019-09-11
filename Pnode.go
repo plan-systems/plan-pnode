@@ -213,7 +213,7 @@ func (pn *Pnode) createAndStartRepo(
 
 	err = CR.Startup()
 	if err != nil {
-		CR.CtxStop("repo startup failed", nil)
+		CR.CtxStop("CommunityRepo startup failed", nil)
 		return nil, err
 	}
 
