@@ -195,7 +195,6 @@ func (pn *Pnode) createAndStartRepo(
 
 	if inSeed != nil {
 		// Only proceed if the dir doesn't exist
-		// TODO: change dir name in the event of a name collision.
 		repoPath, err = plan.CreateNewDir(pn.ReposPath, inRepoSubPath)
 
 	} else {
@@ -247,7 +246,7 @@ func (pn *Pnode) seedRepo(
 		return plan.Error(nil, plan.AssertFailed, "pnode must be running to seed a new repo")
 	}
 
-	// In the unlikely event that pn.Shutdown() is called while this is all happening,
+	// In the unlikely event that pn.CtxStop() is called while this is all happening,
 	//    prevent the rug from being snatched out from under us.
 	hold := make(chan struct{})
 	defer func() {
@@ -257,7 +256,7 @@ func (pn *Pnode) seedRepo(
 		<-hold
 	})
 
-	// When we pass the seed, it means create from scratch
+	// When we pass the seed, it means create the repo if needed
 	_, err := pn.createAndStartRepo(inSeed.SuggestedDirName, inSeed)
 
 	if err == nil {
